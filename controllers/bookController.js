@@ -301,8 +301,8 @@ exports.makePaymentController = async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItem,
             mode: "payment",
-            success_url: "http://localhost:5173/payment-success",  // Replace with your actual success URL
-            cancel_url: "http://localhost:5173/payment-error"     // Replace with your actual cancel URL
+            success_url: "https://bookstore-backend-263y.onrender.com/payment-success",  // Replace with your actual success URL
+            cancel_url: "https://bookstore-backend-263y.onrender.com/payment-error"     // Replace with your actual cancel URL
         });
 
         // Respond with session ID
