@@ -270,7 +270,7 @@ exports.makePaymentController = async (req, res) => {
             console.log(updatedBook);
         }
 
-        // Now, create the Stripe session
+        // Now, create the Stripe checkout session
         const lineItem = [{
             price_data: {
                 currency: "usd",
@@ -293,7 +293,7 @@ exports.makePaymentController = async (req, res) => {
                         book_buyer: buyer
                     }
                 },
-                unit_amount: Math.round(bookDetails.discountPrice * 100) // Cent value
+                unit_amount: Math.round(bookDetails.discountPrice * 100) // Cent value 1 cents = 0.01 dollars
             },
             quantity: 1
         }];
@@ -301,6 +301,7 @@ exports.makePaymentController = async (req, res) => {
         // Create the checkout session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
+            //A list of items the customer is purchasing.
             line_items: lineItem,
             mode: "payment",
             // success_url: "https://bookstore-backend-263y.onrender.com/payment-success",  // Replace with your actual success URL
